@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+option java_package = "org.side.HotelReservationApplication.stub";
+
+
+// Service pour la gestion des réservations
+service ReservationService {
+  rpc AddReservation(AddReservationRequest) returns (AddReservationResponse);         // Ajouter une nouvelle réservation
+  rpc GetReservationById(GetReservationByIdRequest) returns (GetReservationByIdResponse); // Consulter une réservation par ID
+  rpc UpdateReservation(UpdateReservationRequest) returns (UpdateReservationResponse); // Mettre à jour une réservation existante
+  rpc DeleteReservation(DeleteReservationRequest) returns (DeleteReservationResponse); // Supprimer une réservation
+}
+
+// Message représentant une réservation
+message Reservation {
+  string id = 1;               // ID unique de la réservation
+  string clientId = 2;         // ID du client associé
+  string chambreId = 3;        // ID de la chambre réservée
+  string dateDebut = 4;        // Date de début du séjour (format : YYYY-MM-DD)
+  string dateFin = 5;          // Date de fin du séjour (format : YYYY-MM-DD)
+  string preferences = 6;      // Préférences du client (ex : vue sur mer)
+}
+
+// Requête pour ajouter une réservation
+message AddReservationRequest {
+  string clientId = 1;
+  string chambreId = 2;
+  string dateDebut = 3;
+  string dateFin = 4;
+  string preferences = 5;
+}
+
+message AddReservationResponse {
+  Reservation reservation = 1;
+}
+
+// Requête pour obtenir une réservation par ID
+message GetReservationByIdRequest {
+  string id = 1;
+}
+
+message GetReservationByIdResponse {
+  Reservation reservation = 1;
+}
+
+// Requête pour mettre à jour une réservation
+message UpdateReservationRequest {
+  string id = 1;
+  string clientId = 2;
+  string chambreId = 3;
+  string dateDebut = 4;
+  string dateFin = 5;
+  string preferences = 6;
+}
+
+message UpdateReservationResponse {
+  Reservation reservation = 1;
+}
+
+// Requête pour supprimer une réservation
+message DeleteReservationRequest {
+  string id = 1;
+}
+
+message DeleteReservationResponse {}
